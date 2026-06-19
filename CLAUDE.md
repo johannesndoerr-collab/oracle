@@ -102,10 +102,62 @@ Diese Seiten blockieren direkte Fetches – stattdessen WebSearch nutzen:
 
 ---
 
-## Output-Format (Erinnerung)
-- Bericht sortiert nach Revenue-Impact: 🔴 → 🟡 → ⚪
-- Discord: Farbe 15548997 (Rot) bei mind. einer 🔴-Meldung
-- Discord: Farbe 16744272 (Orange) bei nur 🟡-Meldungen
-- Discord: KEIN Webhook bei nur ⚪-Meldungen
-- PushNotification: immer senden wenn es 🔴 oder 🟡 Meldungen gibt
+## Output-Format (VERBINDLICH ab KW26)
+
+### Grundprinzip: NUR NEUES melden
+- **Zu Beginn jedes Laufs:** das letzte Moves-File aus `intelligence/moves/` lesen (z.B. `KW25_2026.md`), um bekannte Moves zu kennen.
+- Im Bericht erscheinen **ausschließlich Moves, die seit dem letzten Lauf NEU oder verändert sind.**
+- Bereits gemeldete Moves NICHT wiederholen. Wettbewerber ohne neue Bewegung kommen in eine einzige "Keine Bewegung"-Zeile.
+
+### Zwei-Ebenen-Struktur
+**Ebene 1 — MOVES DER WETTBEWERBER (rein beschreibend, keine Farben):**
+Pro Competitor die neuen Moves, jeweils mit Move-Typ-Tag:
+| Tag | Bedeutung |
+|---|---|
+| 🆕 | Neuer Kurs / neues Angebot |
+| ❌ | Kurs/Angebot eingestellt |
+| 🔁 | Frequenz- oder Format-Änderung |
+| 💶 | Preisänderung |
+| 🤝 | Neue Partnerschaft |
+| 📣 | Ankündigung / PR |
+| 🌍 | Geografische Ausweitung |
+
+**Ebene 2 — SO WHAT für NetZero (konsolidiert, priorisiert, MIT Handlungsempfehlung):**
+- NICHT pro Competitor, sondern die 2–4 strategisch wesentlichen Erkenntnisse.
+- Mehrere Moves dürfen zu einer Erkenntnis verdichtet werden (z.B. "zwei Anbieter senken Preise → Preiskampf").
+- Hier (und NUR hier) wird mit 🔴/🟡 priorisiert.
+- Jede Erkenntnis endet mit konkreter Handlungsempfehlung (→ ...).
+- Fußzeile: "Noch offen aus Vorwochen: …" (Einzeiler, kein eigener Block).
+
+### Template
+```
+📊 Market Intel · KW## · NetZero Academy
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MOVES DER WETTBEWERBER
+
+<Competitor>
+  <Tag> <kurze Beschreibung des Moves>
+
+Keine Bewegung: <Liste der gescreenten Anbieter ohne News>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SO WHAT — für NetZero
+
+🔴 <Erkenntnis> → <Handlungsempfehlung>
+🟡 <Erkenntnis> → <Handlungsempfehlung>
+
+Noch offen aus Vorwochen: <Einzeiler>
+```
+
+### Logging (immer, auch in ruhigen Wochen)
+- Jeden neuen Move ins Wochenfile `intelligence/moves/KW##_2026.md` schreiben (Taxonomie: NEW_OFFERING, PRODUCT_CHANGE, PRODUCT_END, PARTNERSHIP, MARKET_EXPANSION, PRICING_CHANGE, REGULATORY_RESPONSE).
+- `intelligence/competitors.md` aktualisieren ("Letzter Move" + neu erkannte Anbieter).
+
+### Discord / Notification-Regeln
+- Discord: Farbe 15548997 (Rot) bei mind. einer 🔴-Erkenntnis im So-What
+- Discord: Farbe 16744272 (Orange) bei nur 🟡-Erkenntnissen
+- Discord: KEIN Webhook wenn es weder 🔴 noch 🟡 gibt (nur ⚪/keine neuen Moves)
+- PushNotification: immer senden wenn es 🔴 oder 🟡 gibt
 - Am Ende des Transkripts: Rückfragen-Block + Selbstverbesserungs-Commit
