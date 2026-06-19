@@ -10,6 +10,7 @@ _Automatisch gepflegt durch wöchentliche CI-Routine. Neue Einträge werden auto
 | Campus EW | campus-ew.de | KW25/2026 | Neuer Lehrgang Sep 2026, WG €4.080 |
 | ausbildung-zum-energieberater.de | ausbildung-zum-energieberater.de | KW25/2026 | Basismodul €1.690 ab Jun 2026 |
 | GUTcert | gut-cert.de | KW25/2026 | BAFA-Zusatz Sep 2026 ab €712 |
+| Energie-Fachberater | energie-fachberater.de | KW25/2026 | noch nicht gescreent – 403 → WebSearch |
 
 ## Tier 2 – Indirekte Wettbewerber
 | Anbieter | URL | Seit KW | Letzter Move |
