@@ -79,26 +79,25 @@ async def on_message(message: discord.Message):
     if not content:
         return
 
-    async with message.channel.typing():
-        history = conversation_history.get(channel_id, [])
-        history.append({"role": "user", "content": content})
+    history = conversation_history.get(channel_id, [])
+    history.append({"role": "user", "content": content})
 
-        if len(history) > 20:
-            history = history[-20:]
+    if len(history) > 20:
+        history = history[-20:]
 
-        system = SYSTEM_PROMPT + load_claude_md()
+    system = SYSTEM_PROMPT + load_claude_md()
 
-        response = client_ai.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=1024,
-            system=system,
-            messages=history,
-        )
+    response = client_ai.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=1024,
+        system=system,
+        messages=history,
+    )
 
-        reply = response.content[0].text
+    reply = response.content[0].text
 
-        history.append({"role": "assistant", "content": reply})
-        conversation_history[channel_id] = history
+    history.append({"role": "assistant", "content": reply})
+    conversation_history[channel_id] = history
 
     # Discord-Limit: 2000 Zeichen pro Nachricht
     for chunk in [reply[i:i+1900] for i in range(0, len(reply), 1900)]:
